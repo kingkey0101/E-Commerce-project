@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/06e59cf638.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
   <script src="books.js"></script>
 </head>
@@ -53,7 +53,7 @@
             <h2 class="section__title books__header--title">
               All <span class="purple">Books</span>
             </h2>
-            <select name="" id="filter">
+            <select name="" id="filter" onchange="filterBooks">
               <option value="" disabled selected>Sort</option>
               <option value="LOW_TO_HIGH">Price, Low to High</option>
               <option value="HIGH_TO_LOW">Price, High to Low</option>
@@ -61,7 +61,24 @@
             </select>
           </div>
           <div class="books">
-            
+            <div class="book">
+      <figure class="book__img--wrapper">
+        <img class="book__img" src="assets/crack the coding interview.png" alt="">
+      </figure>
+      <div class="book__title">
+        Crack the Coding Interview
+      </div>
+      <div class="book__ratings">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <div class="book__price">
+        <span class="book__price--normal">$59.95</span> $14.95
+      </div>
+    </div>
           </div>
         </div>
       </div>
