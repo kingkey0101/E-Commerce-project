@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// FAKE DATA
+// FAKE DATA For Books
 function getBooks() {
-  // simulated API
+  // simulated API for loading state
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
