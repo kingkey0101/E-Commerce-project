@@ -1,7 +1,15 @@
-function renderBooks() {
+function renderBooks(filter) {
   const booksWrapper = document.querySelector(".books");
 
   const books = getBooks();
+
+  if (filter === "LOW_TO_HIGH") {
+    books.sort((a, b) => a.originalPrice - b.originalPrice);
+  } else if (filter === "HIGH_TO_LOW") {
+    books.sort((a, b) => b.originalPrice - a.originalPrice);
+  } else if (filter === "RATING") {
+    books.sort((a, b) => b.rating - a.rating);
+  }
 
   const booksHtml = books
     .map((book) => {
@@ -13,11 +21,7 @@ function renderBooks() {
         ${book.title}
       </div>
       <div class="book__ratings">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
+       ${ratingsHTML(book.rating)}
       </div>
       <div class="book__price">
         <span>$ ${book.originalPrice.toFixed(2)}</span> 
@@ -29,13 +33,34 @@ function renderBooks() {
   booksWrapper.innerHTML = booksHtml;
 }
 
-function filterBooks(event) {
-  if (event.target.value === 'LOW_TO_HIGH') {
-    console.log('sort by low to high')
+function ratingsHTML(rating) {
+  let ratingHTML = "";
+  for (let i = 0; i < Math.floor(rating); ++i) {
+    ratingHTML += '<i i class="fas fa-star"></i>\n';
   }
+  if (!Number.isInteger(rating)) {
+    ratingHTML += '<i class="fas fa-star-half-alt"></i>\n';
+  }
+
+  return ratingHTML;
 }
-setTimeout(() => {
-  renderBooks();
+
+function filterBooks(event) {
+  renderBooks(event.target.value);
+  // else( console.log('sort by high to low'))
+}
+
+// DOMContentLoaded event listener
+document.addEventListener("DOMContentLoaded", function () {
+  const filterElement = document.querySelector("#filter");
+  if (filterElement) {
+    filterElement.addEventListener("change", filterBooks);
+  }
+
+  setTimeout(() => {
+    renderBooks();
+  });
+  // renderBooks();
 });
 
 // FAKE DATA
@@ -111,7 +136,7 @@ function getBooks() {
       url: "assets/book-6.jpeg",
       originalPrice: 35,
       salePrice: null,
-      rating: 4,
+      rating: 2,
     },
     {
       id: 10,
